@@ -3226,3 +3226,502 @@ var chinaData = [{
     "confirmedAdd": 0
   }]
 }]
+
+var worldData = [{
+  "name": "中国",
+  "value": "80303",
+  "susNum": "587",
+  "deathNum": "2948",
+  "cureNum": "47378",
+  "confirmedAdd": "125"
+}, {
+  "name": "韩国",
+  "value": "5186",
+  "susNum": 0,
+  "deathNum": "31",
+  "cureNum": "31",
+  "confirmedAdd": "476"
+}, {
+  "name": "伊朗",
+  "value": "2336",
+  "susNum": 0,
+  "deathNum": "77",
+  "cureNum": "435",
+  "confirmedAdd": "385"
+}, {
+  "name": "钻石号邮轮",
+  "value": "706",
+  "susNum": 0,
+  "deathNum": "6",
+  "cureNum": "10",
+  "confirmedAdd": "1"
+}, {
+  "name": "日本本土",
+  "value": "279",
+  "susNum": 0,
+  "deathNum": "6",
+  "cureNum": "32",
+  "confirmedAdd": 0
+}, {
+  "name": "新加坡",
+  "value": "108",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "78",
+  "confirmedAdd": "4"
+}, {
+  "name": "科威特",
+  "value": "56",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "11"
+}, {
+  "name": "巴林",
+  "value": "47",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "7"
+}, {
+  "name": "泰国",
+  "value": "43",
+  "susNum": 0,
+  "deathNum": "1",
+  "cureNum": "28",
+  "confirmedAdd": 0
+}, {
+  "name": "马来西亚",
+  "value": "36",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "21",
+  "confirmedAdd": 0
+}, {
+  "name": "伊拉克",
+  "value": "26",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "6"
+}, {
+  "name": "阿联酋",
+  "value": "21",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "5",
+  "confirmedAdd": "2"
+}, {
+  "name": "越南",
+  "value": "16",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "16",
+  "confirmedAdd": 0
+}, {
+  "name": "以色列",
+  "value": "12",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "2",
+  "confirmedAdd": 0
+}, {
+  "name": "卡塔尔",
+  "value": "7",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "2"
+}, {
+  "name": "阿曼",
+  "value": "6",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "2",
+  "confirmedAdd": 0
+}, {
+  "name": "印度",
+  "value": "6",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "3",
+  "confirmedAdd": 0
+}, {
+  "name": "巴基斯坦",
+  "value": "5",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "菲律宾",
+  "value": "3",
+  "susNum": 0,
+  "deathNum": "1",
+  "cureNum": "1",
+  "confirmedAdd": 0
+}, {
+  "name": "黎巴嫩",
+  "value": "3",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "1"
+}, {
+  "name": "格鲁吉亚",
+  "value": "3",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "阿塞拜疆",
+  "value": "3",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "印度尼西亚",
+  "value": "2",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "2"
+}, {
+  "name": "尼泊尔",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "1",
+  "confirmedAdd": 0
+}, {
+  "name": "柬埔寨",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "1",
+  "confirmedAdd": 0
+}, {
+  "name": "斯里兰卡",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "1",
+  "confirmedAdd": 0
+}, {
+  "name": "阿富汗",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "亚美尼亚",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "约旦",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "沙特阿拉伯",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "意大利",
+  "value": "2086",
+  "susNum": 0,
+  "deathNum": "52",
+  "cureNum": "149",
+  "confirmedAdd": "561"
+}, {
+  "name": "法国",
+  "value": "191",
+  "susNum": 0,
+  "deathNum": "3",
+  "cureNum": "12",
+  "confirmedAdd": 0
+}, {
+  "name": "德国",
+  "value": "188",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "16",
+  "confirmedAdd": "72"
+}, {
+  "name": "西班牙",
+  "value": "124",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "3",
+  "confirmedAdd": 0
+}, {
+  "name": "英国",
+  "value": "40",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "8",
+  "confirmedAdd": "13"
+}, {
+  "name": "瑞士",
+  "value": "38",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "6"
+}, {
+  "name": "挪威",
+  "value": "32",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "4"
+}, {
+  "name": "瑞典",
+  "value": "19",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "1"
+}, {
+  "name": "荷兰",
+  "value": "18",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "6"
+}, {
+  "name": "奥地利",
+  "value": "16",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "比利时",
+  "value": "13",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "1",
+  "confirmedAdd": 0
+}, {
+  "name": "克罗地亚",
+  "value": "9",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "冰岛",
+  "value": "9",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "2"
+}, {
+  "name": "芬兰",
+  "value": "7",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "1",
+  "confirmedAdd": "4"
+}, {
+  "name": "希腊",
+  "value": "7",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "4"
+}, {
+  "name": "俄罗斯",
+  "value": "6",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "2",
+  "confirmedAdd": 0
+}, {
+  "name": "丹麦",
+  "value": "6",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "1"
+}, {
+  "name": "捷克",
+  "value": "5",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": "3"
+}, {
+  "name": "罗马尼亚",
+  "value": "3",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "1",
+  "confirmedAdd": 0
+}, {
+  "name": "白俄罗斯",
+  "value": "3",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "葡萄牙",
+  "value": "2",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "北马其顿",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "爱沙尼亚",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "爱尔兰",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "摩纳哥",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "立陶宛",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "安道尔",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "拉脱维亚",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "美国",
+  "value": "105",
+  "susNum": 0,
+  "deathNum": "6",
+  "cureNum": "3",
+  "confirmedAdd": 0
+}, {
+  "name": "加拿大",
+  "value": "27",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "7",
+  "confirmedAdd": 0
+}, {
+  "name": "墨西哥",
+  "value": "5",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "1",
+  "confirmedAdd": "3"
+}, {
+  "name": "多米尼加",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "澳大利亚",
+  "value": "38",
+  "susNum": 0,
+  "deathNum": "1",
+  "cureNum": "21",
+  "confirmedAdd": "2"
+}, {
+  "name": "新西兰",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "阿尔及利亚",
+  "value": "5",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "埃及",
+  "value": "2",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": "1",
+  "confirmedAdd": "1"
+}, {
+  "name": "尼日利亚",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "塞内加尔",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "突尼斯",
+  "value": "1",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "厄瓜多尔",
+  "value": "7",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}, {
+  "name": "巴西",
+  "value": "2",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0
+}]

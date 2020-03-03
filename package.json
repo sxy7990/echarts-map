@@ -43,6 +43,7 @@
       "no-mixed-operators": 0,
       "no-plusplus": 0,
       "import/extensions": 0,
+      "import/no-unresolved": 0,
       "max-len": 0,
       "global-require": 0,
       "no-console": 0

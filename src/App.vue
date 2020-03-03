@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">疫情地图</router-link>
+      <router-link to="/">国内疫情</router-link> |
+      <router-link to="/worldMap">国外疫情</router-link>
     </div>
     <router-view/>
   </div>
