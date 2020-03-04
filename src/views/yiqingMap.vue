@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import echarts from 'echarts';
+import echarts from 'echarts'; // 引入echarts
 import 'echarts/map/js/china.js'; // 引入中国地图数据
 
 export default {
@@ -51,9 +51,13 @@ export default {
       } else {
         this.level2 = true;
       }
+      // 获取dom
       this.myChart = echarts.init(document.getElementById('yiqingmap'));
+      // 获取中国地图
       this.mapFeatures = echarts.getMap(name).geoJson.features;
+      // echarts配置
       this.myChart.setOption({
+        // 悬浮框
         tooltip: {
           trigger: 'item',
           triggerOn: 'mousemove',
@@ -76,6 +80,7 @@ export default {
             return res;
           },
         },
+        // 数据-颜色映射关系
         visualMap: {
           show: true,
           type: 'piecewise',
@@ -121,6 +126,7 @@ export default {
             fontSize: 16,
           },
         },
+        // 地图
         geo: {
           show: true,
           map: name,

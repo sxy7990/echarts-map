@@ -34,7 +34,7 @@ export default {
       this.myChart = null;
     },
     getData() {
-      // 此处省略请求数据
+      // 此处模拟请求数据
       this.originData = window.worldData;
       // 初始化地图
       this.initWorldChart(this.originData);
