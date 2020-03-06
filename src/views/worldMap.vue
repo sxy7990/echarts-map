@@ -7,6 +7,7 @@
 <script>
 import echarts from 'echarts';
 import 'echarts/map/js/world.js'; // 引入世界地图数据
+import '../utils/SCUS0001_map';
 import nameMap from '../utils/echartsNameMap';
 
 export default {
@@ -37,11 +38,11 @@ export default {
       // 此处模拟请求数据
       this.originData = window.worldData;
       // 初始化地图
-      this.initWorldChart(this.originData);
+      this.initWorldChart('world', this.originData);
     },
-    initWorldChart(data) {
+    initWorldChart(name, data, level) {
       this.worldChart = echarts.init(document.getElementById('worldmap'));
-      this.mapFeatures = echarts.getMap('world').geoJson.features;
+      this.mapFeatures = echarts.getMap(name).geoJson.features;
       this.worldChart.setOption({
         tooltip: {
           extraCssText: 'z-index: 5',
@@ -110,8 +111,8 @@ export default {
         },
         geo: {
           show: true,
-          map: 'world',
-          roam: false,
+          map: name,
+          roam: true,
           layoutCenter: ['50%', '50%'],
           layoutSize: '120%',
           nameMap,
@@ -135,7 +136,7 @@ export default {
         series: [
           {
             type: 'map',
-            map: 'world',
+            map: name,
             name: '确诊病例',
             geoIndex: 0,
             label: {
