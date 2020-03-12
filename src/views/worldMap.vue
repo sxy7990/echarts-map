@@ -6,8 +6,9 @@
 
 <script>
 import echarts from 'echarts';
-import 'echarts/map/js/world.js'; // 引入世界地图数据
-import '../utils/SCUS0001_map';
+import 'echarts/map/js/world.js';
+import world from '../utils/map/world-highres3.geo';
+import usa from '../utils/map/us-all.geo';
 import nameMap from '../utils/echartsNameMap';
 
 export default {
@@ -16,6 +17,9 @@ export default {
       myChart: null,
       originData: [],
       mapFeatures: '',
+      detail: false,
+      zoom: 1,
+      center: [4210, 7200],
     };
   },
   beforeDestroy() {
@@ -38,11 +42,12 @@ export default {
       // 此处模拟请求数据
       this.originData = window.worldData;
       // 初始化地图
-      this.initWorldChart('world', this.originData);
+      this.initWorldChart('world', this.originData, world);
     },
-    initWorldChart(name, data, level) {
+    initWorldChart(name, data, json) {
       this.worldChart = echarts.init(document.getElementById('worldmap'));
-      this.mapFeatures = echarts.getMap(name).geoJson.features;
+      // this.mapFeatures = echarts.getMap(name).geoJson.features;
+      echarts.registerMap(name, json);
       this.worldChart.setOption({
         tooltip: {
           extraCssText: 'z-index: 5',
@@ -55,7 +60,7 @@ export default {
           padding: [10, 15],
           textStyle: {
             color: 'rgba(255,255,255,1)',
-            fontSize: 20,
+            fontSize: 16,
           },
           formatter: (value) => {
             const vd = value.data;
@@ -73,7 +78,6 @@ export default {
                 确诊：${vd.value}<br>
                 死亡：${vd.deathNum}<br>
                 死亡率：${cent}%<br>
-                ${vd.city && vd.city.length > 0 ? '<span id="showCity">查看详细数据</span>' : ''}
               `;
             }
             return res;
@@ -106,13 +110,15 @@ export default {
           },
           textStyle: {
             color: 'rgba(144,143,143,1)',
-            fontSize: 16,
+            fontSize: 14,
           },
         },
         geo: {
           show: true,
           map: name,
           roam: true,
+          zoom: this.zoom,
+          center: this.center,
           layoutCenter: ['50%', '50%'],
           layoutSize: '120%',
           nameMap,
@@ -141,10 +147,9 @@ export default {
             geoIndex: 0,
             label: {
               normal: {
-                show: true,
+                show: false,
               },
             },
-            roam: false,
             itemStyle: {
               normal: {
                 areaColor: '#031525',
@@ -159,6 +164,41 @@ export default {
           },
         ],
       });
+
+      // this.worldChart.on('georoam', (params) => {
+      //   // console.log(params);
+      //   this.onDatazoom();
+      // });
+    },
+    onDatazoom() {
+      // const { detail, option } = this.state;
+      const { zoom } = this.getZoom();
+      const threshold = 2;
+      this.saveZoom(); // 地图缩放后，将缩放值和center保存在状态中
+      console.log('zoom', this.zoom);
+      console.log('center', this.center);
+
+      if (zoom >= threshold && !this.detail) {
+        // 切换详细地图
+        this.detail = true;
+        this.initWorldChart('world', this.originData, usa);
+      } else if (this.detail && zoom < threshold) {
+        // 切换默认地图
+        this.detail = false;
+        this.initWorldChart('world', this.originData, world);
+      }
+    },
+    getZoom() {
+      if (this.worldChart) {
+        const { zoom, center } = this.worldChart.getOption().geo[0];
+        return { zoom, center };
+      }
+      return;
+    },
+    saveZoom() {
+      const { zoom, center } = this.getZoom();
+      this.zoom = zoom;
+      this.center = center;
     },
   },
 };
