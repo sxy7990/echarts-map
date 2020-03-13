@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">国内疫情</router-link> |
-      <router-link to="/worldMap">国外疫情</router-link>
+      <router-link to="/worldMap">国外疫情</router-link> |
+      <router-link to="/earth">3d地球</router-link>
     </div>
     <router-view/>
   </div>

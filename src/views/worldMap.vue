@@ -46,8 +46,8 @@ export default {
     },
     initWorldChart(name, data, json) {
       this.worldChart = echarts.init(document.getElementById('worldmap'));
-      // this.mapFeatures = echarts.getMap(name).geoJson.features;
-      echarts.registerMap(name, json);
+      this.mapFeatures = echarts.getMap(name).geoJson.features;
+      // echarts.registerMap(name, json);
       this.worldChart.setOption({
         tooltip: {
           extraCssText: 'z-index: 5',
@@ -117,8 +117,8 @@ export default {
           show: true,
           map: name,
           roam: true,
-          zoom: this.zoom,
-          center: this.center,
+          // zoom: this.zoom,
+          // center: this.center,
           layoutCenter: ['50%', '50%'],
           layoutSize: '120%',
           nameMap,
