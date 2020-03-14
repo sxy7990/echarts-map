@@ -18,22 +18,43 @@ export default {
       mapOption: {},
       earthOption: {},
       earthChart: null,
+      hoverIndex: 0,
+      timer: null,
+      country: [{
+        name: '中国',
+        coord: [104.195397, 35.86166],
+      }, {
+        name: '德国',
+        coord: [10.451526, 51.165691],
+      }, {
+        name: '英国',
+        coord: [-3.435973, 55.378051],
+      }, {
+        name: '美国',
+        coord: [-95.712891, 37.09024],
+      }, {
+        name: '日本',
+        coord: [138.252924, 36.204824],
+      }, {
+        name: '意大利',
+        coord: [12.56738, 41.87194],
+      }, {
+        name: '法国',
+        coord: [2.213749, 46.227638],
+      }],
     };
   },
   beforeDestroy() {
+    clearInterval(this.timer);
     this.disposeMap();
   },
   mounted() {
     // 获取地图数据
-    // this.getData();
-    this.initWorldMap('world', []);
+    this.getData();
   },
   methods: {
     disposeMap() {
       // 销毁地图实例
-      // if (!this.myChart) {
-      //   return;
-      // }
       if (this.mapChart) {
         this.mapChart.dispose();
         this.mapChart = null;
@@ -43,6 +64,13 @@ export default {
         this.earthChart = null;
       }
     },
+    // 此处模拟请求数据
+    getData() {
+      this.originData = window.worldData;
+      console.log('data', this.originData);
+      // 初始化地图
+      this.initWorldMap('world', this.originData);
+    },
     // 地图
     initWorldMap(name, data) {
       const canvas = document.createElement('canvas');
@@ -51,6 +79,36 @@ export default {
         height: 2048,
       });
       this.mapOption = {
+        visualMap: {
+          show: true,
+          type: 'piecewise',
+          itemHeight: 10,
+          itemGap: 8,
+          pieces: [
+            { min: 1000 }, // 不指定 max，表示 max 为无限大（Infinity）。
+            { min: 100, max: 999 },
+            { min: 10, max: 99 },
+            { min: 1, max: 9 },
+          ],
+          showLabel: true,
+          itemSymbol: 'circle',
+          seriesIndex: [0],
+          left: '2%',
+          bottom: '2%',
+          hoverLink: false,
+          inRange: {
+            color: [
+              'rgba(247,229,190,0.8)',
+              'rgba(245,180,145,0.8)',
+              'rgba(213,111,69,0.8)',
+              'rgba(112,31,17,0.8)',
+            ],
+          },
+          textStyle: {
+            color: 'rgba(144,143,143,1)',
+            fontSize: 14,
+          },
+        },
         geo: {
           show: true,
           type: 'map',
@@ -77,7 +135,30 @@ export default {
             [180, -90],
           ],
         },
-        data: [],
+        series: [
+          {
+            type: 'map',
+            map: name,
+            name: '确诊病例',
+            geoIndex: 0,
+            label: {
+              normal: {
+                show: false,
+              },
+            },
+            itemStyle: {
+              normal: {
+                areaColor: '#031525',
+                borderColor: '#3B5077',
+              },
+              emphasis: {
+                areaColor: '#2B91B7',
+              },
+            },
+            animation: false,
+            data,
+          },
+        ],
       };
       this.mapChart.setOption(this.mapOption);
       this.initEarth();
@@ -122,14 +203,13 @@ export default {
             },
           },
           viewControl: {
-            projection: 'perspective',
-            alpha: 90,
-            beta: 0,
-            // center: [0, 50, 0], // 视角
-            targetCoord: [100.46, 39.92],
-            autoRotate: true,
+            targetCoord: [104.195397, 35.86166],
+            autoRotate: false,
             autoRotateAfterStill: 5,
             distance: 150, // 视距
+            animation: true, // 开启过渡动画
+            animationDurationUpdate: 1500, // 过渡时长
+            animationEasingUpdate: 'linear',
           },
           postEffectL: {
             enable: true,
@@ -146,6 +226,60 @@ export default {
         },
       };
       this.earthChart.setOption(this.earthOption);
+      // this.highLight('伊朗');
+      this.timer = setInterval(() => {
+        console.log('idx', this.hoverIndex);
+        const { name, coord } = this.country[this.hoverIndex];
+        this.setCenter(coord);
+        this.highLight(name);
+        this.hoverIndex++;
+        if (this.hoverIndex === this.country.length) {
+          this.hoverIndex = 0;
+        }
+      }, 3000);
+      // setTimeout(() => {
+      //   this.setCenter();
+      // }, 3000);
+    },
+    setCenter(coord) {
+      this.earthChart.setOption({
+        globe: {
+          viewControl: {
+            targetCoord: coord,
+            autoRotate: false,
+            autoRotateAfterStill: 5,
+            distance: 150, // 视距
+            animation: true, // 开启过渡动画
+            animationDurationUpdate: 1000, // 过渡时长
+            animationEasingUpdate: 'linear',
+          },
+        },
+      });
+    },
+    bindHover() {
+      this.mapChart.on('mouseover', (d) => {
+        console.log('hover', d);
+      });
+    },
+    highLight(val) {
+      let index;
+      for (let i = 0; i < this.originData.length; i++) {
+        const oi = this.originData[i];
+        if (val === oi.name) {
+          index = i;
+          break;
+        }
+      }
+      // 取消高亮
+      this.mapChart.dispatchAction({
+        type: 'downplay',
+        // dataIndex: index,
+      });
+      // 高亮
+      this.mapChart.dispatchAction({
+        type: 'highlight',
+        dataIndex: index,
+      });
     },
   },
 };
