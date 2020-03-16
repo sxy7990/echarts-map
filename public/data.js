@@ -5640,4 +5640,16 @@ var worldData = [{
   "curedAdd": 0,
   "rate": "0.08",
   "light": 0
+}, {
+  "name": "四川",
+  "ename": "Sichuan",
+  "value": "8888",
+  "susNum": 0,
+  "deathNum": 0,
+  "cureNum": 0,
+  "confirmedAdd": 0,
+  "deadAdd": 0,
+  "curedAdd": 0,
+  "rate": "0.08",
+  "light": 0
 }]

@@ -9,6 +9,7 @@ import echarts from 'echarts';
 import 'echarts-gl';
 import 'echarts/map/js/world.js';
 import echartsNameMap from '../utils/echartsNameMap.js';
+import worldAndChina from '../utils/map/worldAndChina.js';
 
 export default {
   data() {
@@ -20,8 +21,9 @@ export default {
       earthChart: null,
       hoverIndex: 0,
       timer: null,
+      interval: 5000,
       country: [{
-        name: '中国',
+        name: '四川',
         coord: [104.195397, 35.86166],
       }, {
         name: '德国',
@@ -67,7 +69,6 @@ export default {
     // 此处模拟请求数据
     getData() {
       this.originData = window.worldData;
-      console.log('data', this.originData);
       // 初始化地图
       this.initWorldMap('world', this.originData);
     },
@@ -78,7 +79,10 @@ export default {
         width: 4096,
         height: 2048,
       });
+      // 注册地球表层的世界地图
+      echarts.registerMap(name, worldAndChina);
       this.mapOption = {
+        // 数据映射
         visualMap: {
           show: true,
           type: 'piecewise',
@@ -109,6 +113,7 @@ export default {
             fontSize: 14,
           },
         },
+        // map
         geo: {
           show: true,
           type: 'map',
@@ -135,6 +140,7 @@ export default {
             [180, -90],
           ],
         },
+        // 结合假数据
         series: [
           {
             type: 'map',
@@ -146,15 +152,15 @@ export default {
                 show: false,
               },
             },
-            itemStyle: {
-              normal: {
-                areaColor: '#031525',
-                borderColor: '#3B5077',
-              },
-              emphasis: {
-                areaColor: '#2B91B7',
-              },
-            },
+            // itemStyle: {
+            //   normal: {
+            //     areaColor: '#031525',
+            //     borderColor: '#3B5077',
+            //   },
+            //   emphasis: {
+            //     areaColor: '#2B91B7',
+            //   },
+            // },
             animation: false,
             data,
           },
@@ -168,29 +174,14 @@ export default {
       this.earthChart = echarts.init(document.getElementById('earth'));
       this.earthOption = {
         backgroundColor: '#333',
-        // visualMap: [{
-        //   show: false,
-        //   type: 'continuous',
-        //   seriesIndex: 0,
-        //   text: ['scatter3D'],
-        //   textStyle: {
-        //     color: '#fff',
-        //   },
-        //   calculable: true,
-        //   max: 3000,
-        //   inRange: {
-        //     color: ['#87aa66', '#eba438', '#d94d4c'],
-        //     symbolSize: [8, 30],
-        //   },
-        // },
-        // ],
         globe: {
           baseTexture: require('../assets/data-1565167424629-_VRUzTZn2.jpg'),
           heightTexture: require('../assets/data-1491889019097-rJQYikcpl.jpg'),
-          displacementScale: 0.04,
-          shading: 'lambert',
+          displacementScale: 0.04, // 地球顶点位移的大小，控制表层高度
+          shading: 'lambert', // 通过经典的 lambert 着色表现光照带来的明暗
           environment: require('../assets/data-1491837999815-H1_44Qtal.jpg'),
-          light: { // 光照阴影
+          // 光照相关的设置
+          light: {
             main: {
               color: '#fff', // 光照颜色
               intensity: 1.2, // 光照强度
@@ -202,33 +193,30 @@ export default {
               intensity: 0.5,
             },
           },
+          // 用于鼠标的旋转，缩放等视角控制。
           viewControl: {
-            targetCoord: [104.195397, 35.86166],
-            autoRotate: false,
-            autoRotateAfterStill: 5,
+            targetCoord: this.country[0].coord, // 初始位置
+            autoRotate: false, // 自动旋转
+            autoRotateAfterStill: 5, // 在鼠标静止操作后恢复自动旋转的时间间隔
             distance: 150, // 视距
             animation: true, // 开启过渡动画
             animationDurationUpdate: 1500, // 过渡时长
-            animationEasingUpdate: 'linear',
+            animationEasingUpdate: 'cubicInOut', // 缓动动画
           },
-          postEffectL: {
-            enable: true,
-            depthOfFieldL: {
-              enable: true,
-              focalDistance: 1000,
-              fstop: 100,
-            },
-          },
+          // 地球表面层的配置
           layers: [{
-            type: 'blend',
-            texture: this.mapChart,
+            type: 'blend', // 跟 baseTexture 混合
+            texture: this.mapChart, // 表层
           }],
         },
       };
       this.earthChart.setOption(this.earthOption);
-      // this.highLight('伊朗');
+      // 开始动画
+      this.setTimer();
+    },
+    // 设置定时器，循环播放
+    setTimer() {
       this.timer = setInterval(() => {
-        console.log('idx', this.hoverIndex);
         const { name, coord } = this.country[this.hoverIndex];
         this.setCenter(coord);
         this.highLight(name);
@@ -236,31 +224,31 @@ export default {
         if (this.hoverIndex === this.country.length) {
           this.hoverIndex = 0;
         }
-      }, 3000);
-      // setTimeout(() => {
-      //   this.setCenter();
-      // }, 3000);
+      }, this.interval);
     },
+    // 移动到某个点
     setCenter(coord) {
       this.earthChart.setOption({
         globe: {
           viewControl: {
-            targetCoord: coord,
-            autoRotate: false,
-            autoRotateAfterStill: 5,
+            targetCoord: coord, // 目标经纬度，转到哪里
+            autoRotate: false, // 自动旋转
+            autoRotateAfterStill: 5, // 在鼠标静止操作后恢复自动旋转的时间间隔
             distance: 150, // 视距
             animation: true, // 开启过渡动画
             animationDurationUpdate: 1000, // 过渡时长
-            animationEasingUpdate: 'linear',
+            animationEasingUpdate: 'cubicInOut', // 缓动动画
           },
         },
       });
     },
+    // hover事件监听
     bindHover() {
       this.mapChart.on('mouseover', (d) => {
         console.log('hover', d);
       });
     },
+    // 封装高亮方法
     highLight(val) {
       let index;
       for (let i = 0; i < this.originData.length; i++) {
